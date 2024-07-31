@@ -1,29 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/style.css">
-    <title>Node.js and PostgreSQL App</title>
+  <title>Users List</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to Our App!</h1>
-        <p>Current time from PostgreSQL: <span id="current-time"></span></p>
-        <h2>Users</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody id="user-list">
-                <!-- Users will be dynamically added here -->
-            </tbody>
-        </table>
-    </div>
-    <script src="/app.js"></script>
+  <div>
+    <h1>Users List</h1>
+    <ul id="users-list"></ul>
+  </div>
+
+  <script>
+    // Fetch users from the backend and display them
+    fetch('/users')
+      .then(response => response.json())
+      .then(data => {
+        const usersList = document.getElementById('users-list');
+        usersList.innerHTML = ''; // Clear the list
+
+        if (data.length > 0) {
+          data.forEach(user => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `Name: ${user.name}, Email: ${user.email}`;
+            usersList.appendChild(listItem);
+          });
+        } else {
+          usersList.textContent = 'No users found';
+        }
+      })
+      .catch(error => console.error('Error fetching users:', error));
+  </script>
 </body>
 </html>
