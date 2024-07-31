@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Node.js and PostgreSQL App</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Our App!</h1>
+        <p>Current time from PostgreSQL: <span id="current-time"></span></p>
+        <h2>Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                </tr>
+            </thead>
+            <tbody id="user-list">
+                <!-- Users will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+    <script src="/app.js"></script>
+</body>
+</html>
